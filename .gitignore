@@ -1,24 +1,87 @@
-# Compiled class file
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# ========================
+# 🧠 Java & Spring Boot
+# ========================
+
+# 编译输出
+/target/
+/build/
+
+# 临时文件
 *.class
-
-# Log file
 *.log
+*.tmp
+*.bak
+*.swp
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# 包文件（可构建生成）
 *.jar
 *.war
-*.nar
 *.ear
 *.zip
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# VM 崩溃日志
 hs_err_pid*
 replay_pid*
+
+# 本地环境变量
+.env
+*.local
+*.secret
+
+# ========================
+# 🧠 IntelliJ IDEA
+# ========================
+
+# 项目配置目录（自动生成，无需提交）
+.idea/
+
+# 模块文件（自动生成）
+
+# IDEA 编译输出目录
+/out/
+
+# ========================
+# 🧠 VS Code（如偶尔打开）
+# ========================
+
+# ========================
+# 🧠 操作系统生成的垃圾文件
+# ========================
+.DS_Store     # macOS
+Thumbs.db     # Windows
