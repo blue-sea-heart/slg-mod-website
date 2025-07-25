@@ -1,0 +1,48 @@
+### 查询所有游戏
+GET http://localhost:8080/api/games
+
+### 删除游戏（假设 ID = 1）
+DELETE http://localhost:8080/api/games/1
+
+### 更新游戏
+PUT http://localhost:8080/api/games/1
+Content-Type: application/json
+
+{
+  "name": "钢铁雄心4 - 更新版",
+  "shortName": "HOI4",
+  "coverImageUrl": "https://example.com/hoi4-new.jpg",
+  "description": "更新后的描述",
+  "developer": "Paradox",
+  "platforms": ["Steam", "Epic", "Xbox"],
+  "isActive": true,
+  "sortOrder": 1
+}
+### 创建游戏
+POST http://localhost:8080/api/games
+Content-Type: application/json
+
+{
+  "name": "钢铁雄心4",
+  "shortName": "HOI4",
+  "coverImageUrl": "https://example.com/hoi4.jpg",
+  "description": "经典二战沙盒战略游戏",
+  "developer": "Paradox Interactive",
+  "platforms": ["Steam", "Epic"],
+  "isActive": true,
+  "sortOrder": 1
+}
+### 创建第二个游戏
+POST http://localhost:8080/api/games
+Content-Type: application/json
+
+{
+  "name": "Counter-Strike: Global Offensive",
+  "shortName": "CSGO",
+  "coverImageUrl": "https://example.com/csgo.jpg",
+  "description": "全球第一的 FPS game",
+  "developer": "Valve",
+  "platforms": ["Steam"],
+  "isActive": true,
+  "sortOrder": 2
+}

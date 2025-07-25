@@ -85,3 +85,6 @@ replay_pid*
 # ========================
 .DS_Store     # macOS
 Thumbs.db     # Windows
+/src/test/http/
+# 忽略 application.properties 文件
+src/main/resources/application.properties
