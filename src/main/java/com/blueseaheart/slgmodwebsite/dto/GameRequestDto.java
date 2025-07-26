@@ -1,18 +1,21 @@
 package com.blueseaheart.slgmodwebsite.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class GameDto {
-    private Long id;
+@AllArgsConstructor
+public class GameRequestDto {
     private String name;
     private String shortName;
-    private String coverImageUrl;
-    private String description;
     private String developer;
     private List<String> platforms;
     private Boolean isActive;
+    private String coverImageUrl;
+    private String description;
     private Integer sortOrder;
+
+    // Getter 和 Setter（或使用 lombok）
 }

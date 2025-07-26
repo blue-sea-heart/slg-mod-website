@@ -1,6 +1,7 @@
 package com.blueseaheart.slgmodwebsite.controller;
 
-import com.blueseaheart.slgmodwebsite.dto.GameDto;
+import com.blueseaheart.slgmodwebsite.dto.GameRequestDto;
+import com.blueseaheart.slgmodwebsite.dto.GameResponseDto;
 import com.blueseaheart.slgmodwebsite.service.GameService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,13 @@ public class GameController {
 
     // 添加游戏
     @PostMapping
-    public GameDto addGame(@RequestBody GameDto dto) {
+    public GameResponseDto addGame(@RequestBody GameRequestDto dto) {
         return gameService.addGame(dto);
     }
 
     // 获取所有游戏
     @GetMapping
-    public List<GameDto> getAllGames() {
+    public List<GameResponseDto> getAllGames() {
         return gameService.getAllGames();
     }
 
@@ -36,7 +37,7 @@ public class GameController {
 
     // 修改游戏
     @PutMapping("/{id}")
-    public GameDto updateGame(@PathVariable Long id, @RequestBody GameDto dto) {
+    public GameResponseDto updateGame(@PathVariable Long id, @RequestBody GameRequestDto dto) {
         return gameService.updateGame(id, dto);
     }
 

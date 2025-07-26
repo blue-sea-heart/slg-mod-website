@@ -1,6 +1,7 @@
 package com.blueseaheart.slgmodwebsite.service;
 
-import com.blueseaheart.slgmodwebsite.dto.GameDto;
+import com.blueseaheart.slgmodwebsite.dto.GameRequestDto;
+import com.blueseaheart.slgmodwebsite.dto.GameResponseDto;
 import com.blueseaheart.slgmodwebsite.entity.Game;
 import com.blueseaheart.slgmodwebsite.repository.GameRepository;
 import org.springframework.stereotype.Service;
@@ -17,32 +18,34 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    //TODO:有3段逻辑，可以合并
-
-    // 添加游戏
-    public GameDto addGame(GameDto dto) {
-        Game game = new Game();
-        game.setName(dto.getName());
-        game.setShortName(dto.getShortName());
-        game.setCoverImageUrl(dto.getCoverImageUrl());
-        game.setDescription(dto.getDescription());
-        game.setDeveloper(dto.getDeveloper());
-        game.setPlatforms(dto.getPlatforms());
-        game.setIsActive(dto.getIsActive());
-        game.setSortOrder(dto.getSortOrder());
-
+    public GameResponseDto addGame(GameRequestDto dto) {
+        Game game = fromRequestDto(dto);
         Game saved = gameRepository.save(game);
-        dto.setId(saved.getId());
-        return dto;
+        return toResponseDto(saved);
     }
 
-    // 获取所有游戏
-    public List<GameDto> getAllGames() {
-        return gameRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
+    public List<GameResponseDto> getAllGames() {
+        return gameRepository.findAll().stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
     }
 
-    private GameDto toDto(Game game) {
-        GameDto dto = new GameDto();
+    public GameResponseDto updateGame(Long id, GameRequestDto dto) {
+        Game game = gameRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("找不到该游戏"));
+
+        updateEntityFromRequest(game, dto);
+        Game updated = gameRepository.save(game);
+        return toResponseDto(updated);
+    }
+
+
+    public void deleteGameById(Long id) {
+        gameRepository.deleteById(id);
+    }
+
+    private GameResponseDto toResponseDto(Game game) {
+        GameResponseDto dto = new GameResponseDto();
         dto.setId(game.getId());
         dto.setName(game.getName());
         dto.setShortName(game.getShortName());
@@ -55,16 +58,13 @@ public class GameService {
         return dto;
     }
 
-    // 删除游戏
-    public void deleteGameById(Long id) {
-        gameRepository.deleteById(id);
+    private Game fromRequestDto(GameRequestDto dto) {
+        Game game = new Game();
+        updateEntityFromRequest(game, dto);
+        return game;
     }
 
-    // 修改游戏
-    public GameDto updateGame(Long id, GameDto dto) {
-        Game game = gameRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("找不到该游戏"));
-
+    private void updateEntityFromRequest(Game game, GameRequestDto dto) {
         game.setName(dto.getName());
         game.setShortName(dto.getShortName());
         game.setCoverImageUrl(dto.getCoverImageUrl());
@@ -73,9 +73,7 @@ public class GameService {
         game.setPlatforms(dto.getPlatforms());
         game.setIsActive(dto.getIsActive());
         game.setSortOrder(dto.getSortOrder());
-
-        Game updated = gameRepository.save(game);
-        return toDto(updated);
     }
+
 
 }
