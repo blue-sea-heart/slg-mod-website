@@ -19,10 +19,10 @@ public class Game {
     private String description;//游戏描述
     private String developer;//开发商
 
-    @ElementCollection
-    @CollectionTable(name = "game_platforms", joinColumns = @JoinColumn(name = "game_id"))
-    @Column(name = "platform")
-    private List<String> platforms; //游戏平台 多个平台，例如 ["Steam", "Epic", "Xbox"]
+//    @ElementCollection
+//    @CollectionTable(name = "game_platforms", joinColumns = @JoinColumn(name = "game_id"))
+//    @Column(name = "platform")
+    private String platforms; //游戏平台 多个平台，例如 ["Steam", "Epic", "Xbox"]
 
     private Boolean isActive = true;//是否激活
     private Integer sortOrder = 0;//排序

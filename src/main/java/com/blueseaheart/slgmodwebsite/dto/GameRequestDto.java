@@ -11,7 +11,7 @@ public class GameRequestDto {
     private String name;
     private String shortName;
     private String developer;
-    private List<String> platforms;
+    private String platforms;
     private Boolean isActive;
     private String coverImageUrl;
     private String description;

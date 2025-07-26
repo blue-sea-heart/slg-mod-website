@@ -46,3 +46,18 @@ Content-Type: application/json
   "isActive": true,
   "sortOrder": 2
 }
+
+### 创建第三个游戏
+POST http://localhost:8080/api/games
+Content-Type: application/json
+
+{
+  "name": "Minecraft",
+  "shortName": "MC",
+  "coverImageUrl": "https://example.com/mc.jpg",
+  "description": "一个dimensional sandbox game",
+  "developer": "Mojang",
+  "platforms": ["Steam", "Xbox"],
+  "isActive": true,
+  "sortOrder": 3
+}
