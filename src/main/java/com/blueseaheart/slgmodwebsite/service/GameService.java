@@ -18,18 +18,33 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
+    /**
+     * 添加新游戏
+     * @param dto 游戏请求数据传输对象
+     * @return 游戏响应数据传输对象
+     */
     public GameResponseDto addGame(GameRequestDto dto) {
         Game game = fromRequestDto(dto);
         Game saved = gameRepository.save(game);
         return toResponseDto(saved);
     }
 
+    /**
+     * 获取所有游戏
+     * @return 游戏响应数据传输对象列表
+     */
     public List<GameResponseDto> getAllGames() {
         return gameRepository.findAll().stream()
                 .map(this::toResponseDto)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 更新游戏信息
+     * @param id 游戏ID
+     * @param dto 游戏请求数据传输对象
+     * @return 游戏响应数据传输对象
+     */
     public GameResponseDto updateGame(Long id, GameRequestDto dto) {
         Game game = gameRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("找不到该游戏"));
@@ -40,6 +55,10 @@ public class GameService {
     }
 
 
+    /**
+     * 删除游戏
+     * @param id 游戏ID
+     */
     public void deleteGameById(Long id) {
         gameRepository.deleteById(id);
     }
